@@ -1,0 +1,442 @@
+{% comment %} <!DOCTYPE html>
+<html>
+<head>
+    <title>Home Page</title>
+    <style>
+        header {
+            background-color: #a76f1a;
+            color: #fff;
+            padding: 10px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 999; /* Ensures the header is above other elements */
+        }
+
+        header a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+
+        header a:hover {
+            text-decoration: underline;
+        }
+
+        /* Main Styles */
+        main {
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* Cards Section Styles */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            margin: 10px;
+            padding: 20px;
+            grid-gap: 20px;
+        }
+
+        .card {
+            background-color: #fff;
+            border-radius: 20px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.18);
+        }
+
+        .card .container {
+            border-radius: 20px 20px 0 0;
+            overflow: hidden;
+        }
+
+        .card .container img {
+            width: 100%;
+            display: block;
+            border-radius: 20px 20px 0 0;
+        }
+
+        .details {
+            padding: 20px;
+            text-align: left;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #a76f1a;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        body {
+            background-image: url('img\cat.jpg');
+            background-size: cover; /* Cover the entire viewport */
+            background-position: center; /* Center the background image */
+            background-repeat: no-repeat; /* Prevent background image from repeating */
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="{% url 'selling' %}">Animal for Sell</a>
+        <a href="{% url 'about' %}">About Us</a>
+        <a href="{% url 'login' %}">login</a>
+        <a href="{% url 'register'%}">register</a>
+    </header>
+    <main>
+        <h1>Welcome TO ANIMAL Warehouse</h1>
+        <h1>Welcome to Our Animal Selling and Buying Website!</h1>
+        <p>Find your next furry friend or sell your own animals with us.</p>
+        
+        <!-- Cards Section -->
+        <div class="cards">
+            {% for item in selling_data %}
+            <div class="card">
+                <div class="container">
+                    <a href="{% url 'item_detail' item_id=item.pk %}">
+                        <img src="{{ item.animal_image.url }}" alt="{{ item.animal_name }}">
+                    </a>
+                </div>
+                <div class="details">
+                    <h2><br>Category : {{ item.animal_name }}</h2>
+                    <p>Price : {{ item.animal_price }}</p>
+                    <p>Location : {{ item.address }}</p>
+                    
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </main>
+    
+        
+    <footer class="About">
+        <div style="margin-right: 100px; width: 100px;">
+
+            <ul style="color: white;">
+                <li>Created By:</li>
+                <li>Avinash Parihar</li>
+                <li>Prashant Chouhan</li>
+                <li>Rohit Patidar</li>
+                <li>Sudhanshu Patidar</li>
+            </ul>
+        </div>
+        <p style="color: white;">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempora assumenda corrupti perspiciatis nulla odit accusantium rem consequatur repellendus atque odio o
+
+</body>
+</html> {% endcomment %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Home Page</title>
+    <style>
+        footer {
+            background-color: #222;
+            color: #fff;
+            font-size: 14px;
+            bottom: 0;
+            position: fixed;
+            left: 0;
+            right: 0;
+            text-align: center;
+            z-index: 999;
+        }
+
+        footer p {
+            margin: 10px 0;
+        }
+
+        footer i {
+            color: red;
+        }
+
+        footer a {
+            color: #3c97bf;
+            text-decoration: none;
+        }
+
+        .footer-area {
+            padding: 40px 0px;
+            background-color: #283e38;
+            color: #fff;
+        }
+
+        .footer-area a {
+            text-decoration: none;
+        }
+
+        .footer-area .footer-heading {
+            font-size: 24px;
+            color: #fff;
+        }
+
+        .footer-area .footer-underline {
+            height: 1px;
+            width: 70px;
+            background-color: #ddd;
+            margin: 10px 0px;
+        }
+
+        .copyright-area {
+            padding: 14px 0px;
+            background-color: #262626;
+        }
+
+        .copyright-area p {
+            margin-bottom: 0px;
+            color: #fff;
+        }
+
+        .copyright-area .social-media {
+            text-align: end;
+        }
+
+        .copyright-area .social-media a {
+            margin: 0px 10px;
+            color: #fff;
+            width: 20px;
+        }
+
+        /* Basic styling for the body */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+        }
+
+        /* Header styling */
+        header {
+            background-color: #FFA500;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        nav {
+            display: flex;
+        }
+
+        nav a {
+            text-decoration: none;
+            padding: 10px;
+            margin-right: 10px;
+            color: black;
+        }
+
+        nav a:hover {
+            background-color: #ddd;
+        }
+
+        /* Main content area styling */
+        main {
+            padding: 20px;
+        }
+
+        /* Styling for the search bar */
+        .search-bar {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .search-input {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            flex-grow: 1;
+        }
+
+        /* Basic styling for buttons */
+        button {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Add styles for other elements as needed */
+
+        /* Main Styles */
+        main {
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* Cards Section Styles */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            margin: 10px;
+            padding: 20px;
+            grid-gap: 20px;
+        }
+
+        .card {
+            background-color: #fff;
+            border-radius: 20px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.18);
+        }
+
+        .card .container {
+            border-radius: 20px 20px 0 0;
+            overflow: hidden;
+        }
+
+        .card .container img {
+            width: 100%;
+            display: block;
+            border-radius: 20px 20px 0 0;
+        }
+
+        .details {
+            padding: 20px;
+            text-align: left;
+        }
+
+        /* Footer Styles */
+        /* footer {
+            background-color: #a76f1a;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        } */
+        body {
+            background-image: url('img\cat.jpg');
+            background-size: cover;
+            /* Cover the entire viewport */
+            background-position: center;
+            /* Center the background image */
+            background-repeat: no-repeat;
+            /* Prevent background image from repeating */
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">Animals Warehouse</div>
+        <nav>
+            <a href="#">Home</a>
+            <a href="{%url 'selling'%}">Sell Animal</a>
+            <a href="{% url 'login' %}">login</a>
+            <a href="{% url 'register'%}">register</a>
+            <a href="#">Animal Food</a>
+            <a href="#">Contact</a>
+        </nav>
+        <div class="search-bar">
+            <input type="text" class="search-input" placeholder="Search your product">
+            <button>Q</button>
+        </div>
+    </header>
+    <main>
+        <h1>Welcome TO ANIMAL Warehouse</h1>
+        <h1>Welcome to Our Animal Selling and Buying Website!</h1>
+        <p>Find your next furry friend or sell your own animals with us.</p>
+
+        <!-- Cards Section -->
+        <div class="cards">
+            {% for item in selling_data %}
+            <div class="card">
+                <div class="container">
+                    <a href="{% url 'item_detail' item_id=item.pk %}">
+                        <img src="{{ item.animal_image.url }}" alt="{{ item.animal_name }}">
+                    </a>
+                </div>
+                <div class="details">
+                    <h2><br>Category : {{ item.animal_name }}</h2>
+                    <p>Price : {{ item.animal_price }}</p>
+                    <p>Location : {{ item.address }}</p>
+                    <!-- Add more details as needed -->
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </main>
+    <div>
+        <div class="footer-area">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-md-3">
+                        <h4 class="footer-heading">Animal Shop</h4>
+                        <div class="footer-underline"></div>
+                        <p>
+                            Lorem ipsum dolor sit amet.
+                        </p>
+                    </div>
+                    <div class="col-md-3">
+                        <h4 class="footer-heading">Quick Links</h4>
+                        <div class="footer-underline"></div>
+                        <div class="mb-2"><a href="" class="text-white">Home</a></div>
+                        <div class="mb-2"><a href="" class="text-white">About Us</a></div>
+                        <div class="mb-2"><a href="" class="text-white">Contact Us</a></div>
+                        <div class="mb-2"><a href="" class="text-white">Blogs</a></div>
+                        <div class="mb-2"><a href="" class="text-white">Sitemaps</a></div>
+                    </div>
+                    <div class="col-md-3">
+                        <h4 class="footer-heading">Shop Now</h4>
+                        <div class="footer-underline"></div>
+                        <div class="mb-2"><a href="" class="text-white">Collections</a></div>
+                        <div class="mb-2"><a href="" class="text-white">Trending Products</a></div>
+                        <div class="mb-2"><a href="" class="text-white">New Arrivals Products</a></div>
+                        <div class="mb-2"><a href="" class="text-white">Featured Products</a></div>
+                        <div class="mb-2"><a href="" class="text-white">Cart</a></div>
+                    </div>
+                    <div class="col-md-3">
+                        <h4 class="footer-heading">Reach Us</h4>
+                        <div class="footer-underline"></div>
+                        <div class="mb-2">
+                            <p>
+                                <i class="fa fa-map-marker"></i> #444, some main road, some area, some street,Indore,
+                                india - 452020
+                            </p>
+                        </div>
+                        <div class="mb-2">
+                            <a href="" class="text-white">
+                                <i class="fa fa-phone"></i> +91 888-XXX-XXXX
+                            </a>
+                        </div>
+                        <div class="mb-2">
+                            <a href="" class="text-white">
+                                <i class="fa fa-envelope"></i> xyz@gmail.com
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8">
+                        <p class=""> &copy; 2024 - Animal Warehouse. All rights reserved.</p>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="social-media">
+                            Get Connected:
+                            <a href=""><i class="fa fa-facebook"></i></a>
+                            <a href=""><i class="fa fa-twitter"></i></a>
+                            <a href=""><i class="fa fa-instagram"></i></a>
+                            <a href=""><i class="fa fa-youtube"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buy Item</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .item-details {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #555;
+        }
+        p {
+            color: #777;
+            margin-bottom: 10px;
+        }
+        button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <center>
+    <h1>Buy Item</h1>
+    </center>
+    <div class="item-details">
+        <h2>{{ item.animal_name }}</h2>
+        <img src="{{ item.animal_image.url }}" alt="{{ item.animal_name }}">
+        <p>Price: {{ item.animal_price }}</p>
+        <p>Description: {{ item.description }}</p>
+        <P>mobile number: {{ item.mobile_number }}</p>
+        <!-- Display more item details as needed -->
+        <div class="action-buttons">
+            <a href="tel:{{ item.phone_number }}">Call Seller</a> 
+            </div>
+    </div>
+    <form action="{% url 'buy_item' item_id=item.id %}" method="post">
+        {% csrf_token %}
+        <center>
+        <button type="submit">Buy Now</button>
+        </center>
+    </form>
+</body>
+</html>
